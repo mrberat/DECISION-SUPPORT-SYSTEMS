@@ -15,6 +15,9 @@ Bootstrap
 JavaScript
 Projenin kodlama aşaması modüler sistemler kullanılarak yapılmıştır. Veritabanı ilişkisel olarak tasarlanmış ve sunucu kısmı MVC yapısına uygun olarak kodlanmıştır. Site, müdürün sisteme kolayca uyum sağlaması ve kullanabilmesi göz önüne alınarak basit ve verimli bir şekilde tasarlanmıştır.
 
+
+
+
 ![resim](https://github.com/user-attachments/assets/a8cb492a-2ddd-473a-86a3-5110eff47199)
 
 ![resim](https://github.com/user-attachments/assets/17689cf2-4e5d-4aab-80ee-ea553408fb4b)
@@ -22,6 +25,17 @@ Projenin kodlama aşaması modüler sistemler kullanılarak yapılmıştır. Ver
 
 Bu görseller Altınkum restoranı hakkında verileri yansıtan dashboarda aittir. Her bir restoran için bu arayüz mevcuttur.
 
+
+
+
+![resim](https://github.com/user-attachments/assets/eafc1aa7-db76-4dbc-87de-6fc8a1e6499c)
+
+Bu görsel ise toplam boştaki personeli en optimal şekilde tüm restoranlara dağıtımın yapıldığı arayüzü göstermektedir.
+
+
+https://github.com/user-attachments/assets/7d73c8c5-eb63-4b8d-a869-5deb766c1950
+
+bu videoda ise personel dağıtımının grafiklerle dinamik şekilde uygulandığını göstermektdir.
 
 
 
