@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- head kısmı -->
+
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+               <!-- Sidebar Start -->
+               <div class="sidebar pe-4 pb-3">
+                <nav class="navbar bg-secondary navbar-dark">
+                    <a href="index.html" class="navbar-brand mx-4 mb-3">
+                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Tahminleme</h3>
+                    </a>
+                    <div class="d-flex align-items-center ms-4 mb-4">
+                        <div class="position-relative">
+                            <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">Berat Bayraktar</h6>
+                            <span>Admin</span>
+                        </div>
+                    </div>
+                    <div class="navbar-nav w-100">
+                        <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Konumlar</a>
+                        <a href="tahminleme.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Tahminleme</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Restoran</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="altinkum.html" class="dropdown-item">Altınkum</a>
+                                <a href="bahçelievler.html" class="dropdown-item">Bahçelievler</a>
+                                <a href="forbes.html" class="dropdown-item">Forbes</a>
+                                <a href="tinaztepe.html" class="dropdown-item">Tınaztepe</a>
+                            </div>
+                        
+                            
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+          <!-- Content End -->
+          
+          <div class="container-fluid">
+            <div class="bg-secondary rounded h-100 p-4">
+              <main role="main">
+                <div class="container mt-4">
+                  <h1>Personel Bilgileri</h1>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="monthSelect" class="form-label">Ay Seç:</label>
+                        <select class="form-select" id="monthSelect">
+                          <option value="1">Ocak</option>
+                          <option value="2">Şubat</option>
+                          <option value="3">Mart</option>
+                          <option value="4">Nisan</option>
+                          <option value="5">Mayıs</option>
+                          <option value="6">Haziran</option>
+                          <option value="7">Temmuz</option>
+                          <option value="8">Ağustos</option>
+                          <option value="9">Eylül</option>
+                          <option value="10">Ekim</option>
+                          <option value="11">Kasım</option>
+                          <option value="12">Aralık</option>
+                          <!-- Diğer ayları da ekleyebilirsiniz -->
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="yearSelect" class="form-label">Yıl Seç:</label>
+                        <select class="form-select" id="yearSelect">
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                          <!-- Diğer yılları da ekleyebilirsiniz -->
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div id="totalEmployees"></div>
+                    </div>
+                    <div class="col-md-6">
+                      <div id="totalEmptyEmployees"></div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+  
+  
+  
+    <!-- Bootstrap JS ve diğer gereklilikler -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Özel JavaScript dosyalarınızı buraya ekleyebilirsiniz -->
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const monthSelect = document.getElementById('monthSelect');
+  const yearSelect = document.getElementById('yearSelect');
+  const totalEmployeesDiv = document.getElementById('totalEmployees');
+  const totalEmptyEmployeesDiv = document.getElementById('totalEmptyEmployees');
+
+  monthSelect.addEventListener('change', fetchTotalEmployees);
+  yearSelect.addEventListener('change', fetchTotalEmployees);
+
+  function fetchTotalEmployees() {
+    const selectedMonth = monthSelect.value;
+    const selectedYear = yearSelect.value;
+
+    // Toplam Personel verisi almak için /toplam_personel endpoint'ine istek gönderme
+    fetch(`/toplam_personel?year=${selectedYear}&month=${selectedMonth}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          const totalEmployeesValue = data[0].toplam_personel;
+          totalEmployeesDiv.textContent = `Toplam Personel: ${totalEmployeesValue}`;
+        } else {
+          totalEmployeesDiv.textContent = `Bu tarih için veri bulunamadı.`;
+        }
+      })
+      .catch(error => {
+        console.error('Toplam Personel verisi alınırken hata oluştu:', error);
+        totalEmployeesDiv.textContent = `Veri getirilirken hata oluştu.`;
+      });
+
+    // Toplam Boş Personel verisi almak için /toplam_bos_personel endpoint'ine istek gönderme
+    fetch(`/toplam_bos_personel?year=${selectedYear}&month=${selectedMonth}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          const totalEmptyEmployeesValue = data[0].toplam_bos_personel;
+          totalEmptyEmployeesDiv.textContent = `Toplam Boş Personel: ${totalEmptyEmployeesValue}`;
+        } else {
+          totalEmptyEmployeesDiv.textContent = `Bu tarih için veri bulunamadı.`;
+        }
+      })
+      .catch(error => {
+        console.error('Toplam Boş Personel verisi alınırken hata oluştu:', error);
+        totalEmptyEmployeesDiv.textContent = `Veri getirilirken hata oluştu.`;
+      });
+  }
+});
+
+
+    </script>
+</div>
+            <!-- Navbar Start -->
+            
+            
+            <!-- Navbar End -->
+            
+
+            
+
+            <!-- Chart Start -->
+            
+            
+            <div class="container-fluid pt-4 px-4">
+              <div class="row g-4">
+                  <div class="col-sm-12 col-xl-6">
+                      <div class="bg-secondary rounded h-100 p-4">
+                          <h6 class="mb-4">Restoran Yoğunluk Grafiği</h6>
+                          <form id="queryForm">
+                              <label for="year">Yıl:</label>
+                              <select id="year"></select>
+                              <br><br>
+                              <label for="restaurant">Restoran Adı:</label>
+                              <select id="restaurant">
+                                <option value="altinkum">Altinkum</option>
+                                <option value="bahcelievler">Bahcelievler</option>
+                                <option value="forbes">Forbes</option>
+                                <option value="tinaztepe">Tinaztepe</option>
+                              </select>
+                              <br><br>
+                              <button type="submit">Göster</button>
+                            </form>
+                            <canvas id="myChart1" width="800" height="400"></canvas>
+                      </div>
+                  </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                          <h6 class="mb-4">Altınkum</h6>
+                          <canvas id="chart2" width="400" height="200"></canvas>
+                          <div>
+                            <select id="yearSelect1">
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                          
+                          <select id="selectMonth" style="margin-right: 10px;">
+                            
+                            <option value="4">Mayıs</option>
+                            <option value="5">Haziran</option>
+                            <option value="6">Temmuz</option>
+                            <option value="7">Ağustos</option>
+                            <option value="8">Eylül</option>
+                            
+                            <!-- Diğer ayları da ekleyebilirsiniz -->
+                        </select>
+                          <button id="increaseBtn">Artır</button>
+                          <button id="decreaseBtn">Azalt</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                      <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Bahçelievler</h6>
+                        <canvas id="chart3" width="400" height="200"></canvas>
+                        <div>
+                          <select id="yearSelect2">
+                              <option value="2022">2022</option>
+                              <option value="2023">2023</option>
+                          </select>
+                      </div>
+                        
+                        <select id="selectMonth1" style="margin-right: 10px;">
+                          <option value="0">Ocak</option>
+                          <option value="1">Şubat</option>
+                          <option value="2">Mart</option>
+                          <option value="3">Nisan</option>
+                          <option value="4">Mayıs</option>
+                          <option value="5">Haziran</option>
+                          <option value="6">Temmuz</option>
+                          <option value="7">Ağustos</option>
+                          <option value="8">Eylül</option>
+                          <option value="9">Ekim</option>
+                          <option value="10">Kasım</option>
+                          <option value="11">Aralık</option>
+                          <!-- Diğer ayları da ekleyebilirsiniz -->
+                      </select>
+                        <button id="increaseBtn1">Artır</button>
+                        <button id="decreaseBtn1">Azalt</button>
+                      </div>
+                  </div>
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                      <h6 class="mb-4">Forbes</h6>
+                      <canvas id="chart4" width="400" height="200"></canvas>
+                      <div>
+                        <select id="yearSelect3">
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                      
+                      <select id="selectMonth2" style="margin-right: 10px;">
+                        <option value="0">Ocak</option>
+                        <option value="1">Şubat</option>
+                        <option value="2">Mart</option>
+                        <option value="3">Nisan</option>
+                        <option value="4">Mayıs</option>
+                        <option value="5">Haziran</option>
+                        <option value="6">Temmuz</option>
+                        <option value="7">Ağustos</option>
+                        <option value="8">Eylül</option>
+                        <option value="9">Ekim</option>
+                        <option value="10">Kasım</option>
+                        <option value="11">Aralık</option>
+                        <!-- Diğer ayları da ekleyebilirsiniz -->
+                    </select>
+                      <button id="increaseBtn2">Artır</button>
+                      <button id="decreaseBtn2">Azalt</button>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                  <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Tınaztepe</h6>
+                    <canvas id="chart5" width="400" height="200"></canvas>
+                    <div>
+                      <select id="yearSelect4">
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                      </select>
+                  </div>
+                    
+                    <select id="selectMonth3" style="margin-right: 10px;">
+                      <option value="0">Ocak</option>
+                      <option value="1">Şubat</option>
+                      <option value="2">Mart</option>
+                      <option value="3">Nisan</option>
+                      <option value="4">Mayıs</option>
+                      <option value="5">Haziran</option>
+                      <option value="6">Temmuz</option>
+                      <option value="7">Ağustos</option>
+                      <option value="8">Eylül</option>
+                      <option value="9">Ekim</option>
+                      <option value="10">Kasım</option>
+                      <option value="11">Aralık</option>
+                      <!-- Diğer ayları da ekleyebilirsiniz -->
+                  </select>
+                    <button id="increaseBtn3">Artır</button>
+                    <button id="decreaseBtn3">Azalt</button>
+                  </div>
+              </div>
+                    
+                </div>
+            </div>
+            <!-- Chart End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="js/tahminleme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

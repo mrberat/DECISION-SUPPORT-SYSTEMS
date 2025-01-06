@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personel Grafiği</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h6 class="mb-4">Aylık Personel Sayısı</h6>
+      <label for="yearSelect1" class="form-label">Yıl Seçin:</label>
+      <select id="yearSelect1" class="form-select">
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <!-- Diğer yılları buraya ekleyebilirsiniz -->
+      </select>
+      <canvas id="doughnut-chart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+<script>
+  document.getElementById('yearForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const year = document.getElementById('yearInput').value;
+    fetchDataAndUpdateChart(year);
+  });
+
+  var ctx6 = document.getElementById('doughnut-chart').getContext('2d');
+  var myChart6;
+
+  function updateChartWithData(data) {
+    if (!myChart6) {
+      myChart6 = new Chart(ctx6, {
+        type: 'doughnut',
+        data: {
+          labels: [],
+          datasets: [{
+            backgroundColor: [
+              'rgba(235, 22, 22, .7)',
+              'rgba(235, 22, 22, .6)',
+              'rgba(235, 22, 22, .5)',
+              'rgba(235, 22, 22, .4)',
+              'rgba(235, 22, 22, .3)'
+            ],
+            data: []
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
+    }
+
+    myChart6.data.labels = data.map(item => item.ay);
+    myChart6.data.datasets[0].data = data.map(item => item.toplam_personel);
+
+    myChart6.update();
+  }
+
+  function fetchDataAndUpdateChart(year) {
+    var endpoint = '/tinaztepe_personel?secilen_yil=' + year;
+
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(data => {
+        updateChartWithData(data);
+      })
+      .catch(error => {
+        console.error('Veri alınamadı:', error);
+      });
+  }
+</script>
+
+</body>
+</html>
