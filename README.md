@@ -1,11 +1,11 @@
 # DECISION-SUPPORT-SYSTEMS
-The aim of the project is to maximize staff productivity for a chain fast-food restaurant. For this purpose, a decision support system (DSS) will be used for the regional manager of the restaurant. The DSS, a web-based program, will function as a reporting and analysis system utilizing visualized data for all restaurants under the responsibility of the regional manager. Another feature of the system is the ability for the manager to simulate desired staff productivity scenarios.
+Projenin amacı, bir zincir fast-food restoranında personel verimliliğini en üst düzeye çıkarmaktır. Bu amaçla, restoranın bölge müdürü için bir karar destek sistemi (KDS) kullanılacaktır. KDS, web tabanlı bir program olup, bölge müdürünün sorumluluğundaki tüm restoranlarla ilgili verileri görselleştirerek bir raporlama ve analiz sistemi olarak işlev görecektir. Sistemin bir diğer özelliği ise müdürün istediği personel verimlilik senaryolarını simüle edebilme yeteneğidir.
 
-The problem arises from the fact that employees in such chain food restaurants do not work for long periods in the restaurant they entered to work. As resignations come within a timeframe of 3-6 months, the continuity of the business is jeopardized. Therefore, personnel transfers between businesses of this kind are made. However, if these transfers are made without data and without consciousness, the business may incur losses in the long term. The project will provide a solution to this problem.
+Problem, bu tür zincir restoranlarda çalışanların uzun süre aynı restoranda çalışmamalarından kaynaklanmaktadır. İşe başlayan çalışanlar genellikle 3-6 ay içinde işten ayrıldıkları için işletmenin sürekliliği tehlikeye girmektedir. Bu nedenle, bu tür işletmeler arasında personel transferleri yapılmaktadır. Ancak, bu transferler veri ve bilinç olmadan yapıldığında, uzun vadede işletme zarara uğrayabilir. Proje, bu soruna bir çözüm sunmayı amaçlamaktadır.
 
-The method used in the project is to create a web-based decision support system. The KDS will fetch data from the created database in real-time. It will generate graphs with relevant data, calculate density based on mathematical operations, and report to the manager. The manager will be able to create scenarios using this system in the analysis section.
+Projede kullanılan yöntem, web tabanlı bir karar destek sistemi oluşturmaktır. KDS, oluşturulan veritabanından gerçek zamanlı veri çekecektir. İlgili verilerle grafikler oluşturacak, matematiksel işlemlerle yoğunluk hesaplayacak ve müdüre rapor sunacaktır. Müdür, bu sistemin analiz bölümünde senaryolar oluşturabilecektir.
 
-The software used in the project is as follows:
+Projede kullanılan yazılımlar şunlardır:
 
 MySQL
 NodeJS
@@ -13,4 +13,19 @@ HTML
 CSS
 Bootstrap
 JavaScript
-The coding phase of the project was done using modular systems. The database was designed relationally, and the server part was coded according to the MVC structure. The site was designed to be simple and efficient, taking into account the manager's ease of adaptation and use.
+Projenin kodlama aşaması modüler sistemler kullanılarak yapılmıştır. Veritabanı ilişkisel olarak tasarlanmış ve sunucu kısmı MVC yapısına uygun olarak kodlanmıştır. Site, müdürün sisteme kolayca uyum sağlaması ve kullanabilmesi göz önüne alınarak basit ve verimli bir şekilde tasarlanmıştır.
+
+![resim](https://github.com/user-attachments/assets/a8cb492a-2ddd-473a-86a3-5110eff47199)
+
+![resim](https://github.com/user-attachments/assets/17689cf2-4e5d-4aab-80ee-ea553408fb4b)
+
+
+Bu görseller Altınkum restoranı hakkında verileri yansıtan dashboarda aittir. Her bir restoran için bu arayüz mevcuttur.
+
+
+
+
+
+
+
+
